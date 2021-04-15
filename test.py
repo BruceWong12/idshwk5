@@ -64,8 +64,9 @@ if __name__ == '__main__':
     clf = training(data, tags)
     raw_data, orig_domain = read_and_preprocess_test_data('test.txt')
     results = predicting(clf, raw_data)
-    for i in range(len(orig_domain)):
-        if results[i] == 0:
-            print("{},notdga".format(orig_domain[i]))
-        else:
-            print("{},dga".format(orig_domain[i]))
+    with open("result.txt", 'w') as f_w:
+        for i in range(len(orig_domain)):
+            if results[i] == 0:
+                f_w.write("{},notdga\n".format(orig_domain[i]))
+            else:
+                f_w.write("{},dga\n".format(orig_domain[i]))
